@@ -1,0 +1,33 @@
+name: FJ Highlights
+
+on:
+  schedule:
+    - cron: '*/15 * * * *'
+  workflow_dispatch:
+
+jobs:
+  highlights:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run highlights filter
+        env:
+          DISCORD_BOT_TOKEN: ${{ secrets.DISCORD_BOT_TOKEN }}
+          SOURCE_CHANNEL_ID: ${{ secrets.SOURCE_CHANNEL_ID }}
+          HIGHLIGHTS_CHANNEL_ID: ${{ secrets.HIGHLIGHTS_CHANNEL_ID }}
+          DIGEST_CHANNEL_ID: ${{ secrets.DIGEST_CHANNEL_ID }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: python -m bot.highlights
+```
