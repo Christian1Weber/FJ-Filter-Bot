@@ -12,7 +12,7 @@ DIGEST_CHANNEL_ID = os.environ["DIGEST_CHANNEL_ID"]
 
 # ── Gemini ───────────────────────────────────────────────
 GEMINI_API_KEY = os.environ["GEMINI_API_KEY"]
-GEMINI_MODEL = "gemini-2.0-flash"
+GEMINI_MODEL = "gemini-2.5-flash"
 
 # ── Filter Settings ──────────────────────────────────────
 # Minimum score (1-10) from LLM to be posted as highlight
